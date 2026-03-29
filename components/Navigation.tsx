@@ -54,7 +54,7 @@ export default function Navigation() {
                             >
                                 <div className="flex flex-col items-center">
                                     <span className="text-[8px] font-mono text-neon-cyan opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">
-                                        // {link.code}
+                                        &lbrace;&quot;//&quot;&rbrace; {link.code}
                                     </span>
                                     <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors">
                                         {link.name}

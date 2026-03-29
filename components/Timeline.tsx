@@ -53,8 +53,8 @@ export default function Timeline() {
         );
 
         // Entrance animation for items
-        const items = gsap.utils.toArray(".timeline-item");
-        items.forEach((item: any) => {
+        const items = gsap.utils.toArray(".timeline-item") as HTMLElement[];
+        items.forEach((item) => {
             gsap.from(item, {
                 opacity: 0,
                 y: 50,
@@ -125,7 +125,7 @@ export default function Timeline() {
                                                 {item.role}
                                             </h3>
                                             <h4 className="text-xs font-mono text-white/40 uppercase tracking-[0.2em] mb-6">
-                                                // {item.company}
+                                                &lbrace;&quot;//&quot;&rbrace; {item.company}
                                             </h4>
 
                                             <p className="text-gray-400 font-light leading-relaxed border-l border-white/10 pl-4">

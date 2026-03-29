@@ -39,9 +39,9 @@ export default function Projects() {
     const containerRef = useRef<HTMLElement>(null);
 
     useGSAP(() => {
-        const items = gsap.utils.toArray(".project-item");
+        const items = gsap.utils.toArray(".project-item") as HTMLElement[];
         
-        items.forEach((item: any) => {
+        items.forEach((item) => {
             const content = item.querySelector(".project-content");
             const visual = item.querySelector(".project-visual");
 
@@ -72,12 +72,12 @@ export default function Projects() {
     }, { scope: containerRef });
 
     return (
-        <section id="projects" ref={containerRef} className="py-32 bg-[#020202] relative overflow-hidden">
+        <section id="projects" ref={containerRef} className="py-22 bg-[#020202] relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col mb-24 space-y-4">
                     <div className="flex items-center gap-3">
                         <Terminal className="text-cyan-400 w-5 h-5" />
-                        <span className="text-xs font-mono text-cyan-400 uppercase tracking-[0.5em]">Sector_04 // Deployment</span>
+                        <span className="text-xs font-mono text-cyan-400 uppercase tracking-[0.5em]">Sector_04</span>
                     </div>
                     <h2 className="text-6xl md:text-8xl font-bold text-white tracking-tighter uppercase">
                         Operation<span className="text-transparent stroke-text ml-4">.Logs</span>
@@ -96,7 +96,7 @@ export default function Projects() {
                                     <div className={`absolute inset-0 ${project.image} group-hover:scale-110 transition-transform duration-700`}></div>
                                     <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500"></div>
                                     <div className="absolute top-4 left-4 font-mono text-[10px] text-cyan-400 opacity-60 uppercase">
-                                        PRJ_{project.id} // STAT: STABLE
+                                        PRJ_{project.id} &lbrace;&quot;//&quot;&rbrace; STAT: STABLE
                                     </div>
                                 </div>
 

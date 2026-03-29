@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Terminal, Fingerprint, Shield, Cpu } from "lucide-react";
+import { Terminal, Bot, Shield, Cpu } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -72,8 +72,8 @@ export default function About() {
                     <div className="space-y-10">
                         <div className="about-header">
                             <div className="flex items-center gap-3 mb-2">
-                                <Fingerprint className="text-neon-cyan w-5 h-5" />
-                                <span className="text-xs font-mono text-neon-cyan uppercase tracking-[0.5em]">Identity_Auth</span>
+                                <Bot className="text-neon-cyan w-5 h-5" />
+                                <span className="text-xs font-mono text-neon-cyan uppercase tracking-[0.5em]">DEVELOPER PROFILE</span>
                             </div>
                             <h2 className="text-5xl md:text-6xl font-bold text-white tracking-tighter uppercase">
                                 SYSTEM<span className="text-transparent stroke-text ml-2">OVERVIEW</span>
@@ -88,10 +88,10 @@ export default function About() {
                             <div className="bg-white/[0.03] border border-white/10 p-8 backdrop-blur-md">
                                 <p className="text-gray-400 font-mono text-sm mb-6 leading-relaxed">
                                     <span className="text-neon-cyan font-bold mr-2">{">"}</span> 
-                                    I am a digital architect bridging cyberpunk aesthetics with high-performance engineering. I don't just build websites; I construct immersive digital territories.
+                                    I am Mohammed Jasan, a Full-Stack Developer and System Architect specializing in building scalable, robust digital ecosystems.
                                 </p>
                                 <p className="text-gray-300 text-lg leading-relaxed">
-                                    My expertise spans the full-stack spectrum, turning complex systemic challenges into sleek, high-frequency user interfaces. Tailored for the modern decentralized era.
+                                    I bridge the gap between clean React/Next.js UIs and complex Node.js/PHP backends. My focus is &quot;under-the-hood&quot; engineering, including event-driven architecture and AI automation.
                                 </p>
                             </div>
                         </div>
@@ -99,8 +99,8 @@ export default function About() {
                         {/* Status List */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {[
-                                { label: "Location", val: "District 4 // Remote", icon: Shield },
-                                { label: "Specialty", val: "Full-Stack Dev", icon: Terminal },
+                                { label: "Location", val: "Sri Lanka // Remote", icon: Shield },
+                                { label: "Education", val: "Applied IT Undergraduate", icon: Terminal },
                             ].map((item, i) => (
                                 <div key={i} className="status-item flex items-center gap-4 p-4 border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all">
                                     <item.icon className="w-5 h-5 text-neon-cyan/50" />

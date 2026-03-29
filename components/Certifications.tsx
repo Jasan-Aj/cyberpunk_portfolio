@@ -44,8 +44,8 @@ export default function Certifications() {
 
         // 3. SCROLL REVEAL: DATA BLOCKS
         // Each block slides in and "flashes" into existence
-        const blocks = gsap.utils.toArray(".data-block");
-        blocks.forEach((block: any, i) => {
+        const blocks = gsap.utils.toArray(".data-block") as HTMLElement[];
+        blocks.forEach((block, i) => {
             gsap.from(block, {
                 x: i % 2 === 0 ? -30 : 30, // Staggered side entry
                 opacity: 0,
@@ -154,7 +154,7 @@ export default function Certifications() {
                                     </div>
                                     <div className="flex gap-4 text-[9px] text-white/40 uppercase tracking-widest pl-3 border-l border-white/5">
                                         <span>Issued_By: {cert.issuer}</span>
-                                        <span className="text-cyan-400/40">// CLS_{cert.date}</span>
+                                        <span className="text-cyan-400/40">&lbrace;&quot;//&quot;&rbrace; CLS_{cert.date}</span>
                                     </div>
                                 </div>
 
