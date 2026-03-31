@@ -6,6 +6,7 @@ import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
+import ServicesOrbit from "@/components/Service";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Timeline />
       <Certifications />
       <Contact />
+      <ServicesOrbit />
 
       <footer className="py-8 bg-black border-t border-neon-cyan/30 text-center text-gray-500 font-sans tracking-widest text-sm uppercase">
         <p>SYSTEM initialized. By Sys<span className="text-neon-cyan">.</span>Admin &copy; 2026. All operations logged.</p>

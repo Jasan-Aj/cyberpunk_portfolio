@@ -1,7 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { ExternalLink, Code2, Terminal, Cpu } from "lucide-react";
+// 1. Import Link from next/link for routing
+import Link from "next/link"; 
+// 2. Rename the lucide icon to LinkIcon to avoid collision
+import { ExternalLink, Terminal, Plus, Link as LinkIcon } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -37,6 +40,28 @@ const PROJECTS = [
 
 export default function Projects() {
     const containerRef = useRef<HTMLElement>(null);
+    const seeMoreTextRef = useRef<HTMLSpanElement>(null);
+
+    const scrambleText = () => {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789%&#$";
+        const originalText = "VIEW_ALL_LOGS";
+        let iteration = 0;
+        
+        const interval = setInterval(() => {
+            if (seeMoreTextRef.current) {
+                seeMoreTextRef.current.innerText = originalText
+                    .split("")
+                    .map((_, index) => {
+                        if (index < iteration) return originalText[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("");
+            }
+
+            if (iteration >= originalText.length) clearInterval(interval);
+            iteration += 1 / 3;
+        }, 30);
+    };
 
     useGSAP(() => {
         const items = gsap.utils.toArray(".project-item") as HTMLElement[];
@@ -69,11 +94,24 @@ export default function Projects() {
                 }
             });
         });
+
+        gsap.from(".see-more-trigger", {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: ".see-more-trigger",
+                start: "top 95%",
+            }
+        });
+
     }, { scope: containerRef });
 
     return (
-        <section id="projects" ref={containerRef} className="py-22 bg-[#020202] relative overflow-hidden">
+        <section id="projects" ref={containerRef} className="py-24 bg-[#020202] relative overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
+                
                 <div className="flex flex-col mb-24 space-y-4">
                     <div className="flex items-center gap-3">
                         <Terminal className="text-cyan-400 w-5 h-5" />
@@ -125,7 +163,6 @@ export default function Projects() {
                                     <div className="flex gap-6 pt-4">
                                         <a href={project.links.github} className="flex items-center gap-2 group/link" target="_blank" rel="noopener noreferrer">
                                             <div className="p-3 border border-white/10 group-hover/link:border-cyan-400 group-hover/link:bg-cyan-400/10 transition-all rounded-full">
-                                                {/* Manual SVG for GitHub to avoid import errors */}
                                                 <svg className="w-5 h-5 text-white/60 group-hover/link:text-cyan-400 fill-current" viewBox="0 0 24 24">
                                                     <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
                                                 </svg>
@@ -144,11 +181,34 @@ export default function Projects() {
                         );
                     })}
                 </div>
+
+                <div className="see-more-trigger flex justify-center mt-32">
+                    {/* Using Next.js Link here */}
+                    <Link href="/projects"
+                        onMouseEnter={scrambleText}
+                        className="group relative flex items-center gap-4 px-10 py-5 border border-white/10 hover:border-cyan-400/50 transition-colors duration-500 overflow-hidden"
+                    >
+                        <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-cyan-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
+                        <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-cyan-400 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+
+                        <Plus className="w-4 h-4 text-cyan-400 group-hover:rotate-90 transition-transform duration-500" />
+                        
+                        <span
+                            ref={seeMoreTextRef}
+                            className="text-[10px] font-mono uppercase tracking-[0.6em] text-white/60 group-hover:text-white transition-colors"
+                        >
+                            View_All_LOGS
+                        </span>
+
+                        <div className="absolute inset-0 bg-cyan-400/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-700 skew-x-12" />
+                    </Link>
+                </div>
             </div>
 
             <style jsx>{`
                 .stroke-text {
                     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+                    color: transparent;
                 }
             `}</style>
         </section>
